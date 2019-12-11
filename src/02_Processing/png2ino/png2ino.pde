@@ -34,7 +34,7 @@ void setup() {
 
 void draw() { 
   background(0); // draw black background
-  println(currentFrame); // which frame are we at? (FIXME remove)
+  //println(currentFrame); // which frame are we at? (FIXME remove)
   image(images[currentFrame], 0, 0, 480, 20); // draw mini version top left
   image(images[currentFrame], 0, 0); // draw image full size
   loadPixels(); // copy stage to very large array for later access
@@ -54,7 +54,7 @@ void draw() {
       output.print(", ");
     }
 
-    println();
+    // println();
   }
   output.print("  },\n" );
 
