@@ -1,11 +1,17 @@
+// png2ino 
+// converts a folder of PNGs to a Arduino .ino animation template
+
 import java.io.FileWriter;
+import java.io.File;
 
-
-int numFrames     = 128;    // The number of frames in the animation
-String folderName = "fire"; // subfolder of "data" subfolder where the animation PNGs are
-int numleds       = 24;     // number of LEDs on the Neopixel string that you are using
+String folderName = "7x1_test_bw"; // subfolder of "data" subfolder where the animation PNGs are
+int numFrames     = 3;             // The number of frames/images in the animation
+int numleds       = 7;             // number of LEDs on the Neopixel string that you are using
 
 // end of configurations --- do not touch below
+
+File folder;
+String [] filenames; 
 
 PImage[] images = new PImage[numFrames]; 
 PrintWriter output; // used to write text file
@@ -20,16 +26,33 @@ int gammaCorrect (int val) { // function to gamma correct color values, see http
 
 void setup() {
   size(480, 20);
-  output = createWriter("animation.ino"); 
-  output.println ("// move this file to your Arduino sketch.");
-  String createdTime = (day()+"/"+month()+"/"+year()+" - "+hour()+":"+minute()+":"+second());
-  output.println ("// animation.ino: created on " + createdTime);
-  output.println ( "const PROGMEM unsigned char B["+ numFrames + "][72]  = {");
 
-  for (int i = 0; i < numFrames; i = i+1) { // pre-load all images
-    String imageName = "data/"+folderName+"/img_" + nf(i, 5) + ".png";
-    images[i]  = loadImage(imageName);
+  // pre-load images
+  java.io.File folder = new java.io.File(dataPath(folderName));
+  filenames = sort(folder.list());  
+  println(filenames.length + ".properties.ser");
+  for (int i = 0; i < filenames.length; i++)
+  {
+    if (filenames[i].endsWith(".png")) {
+      // preload images here
+      println(filenames[i]);
+      String imageName = "data/"+folderName+"/"+filenames[i];
+      images[i]  = loadImage(imageName);
+    }
   }
+
+  // for (int i = 0; i < numFrames; i = i+1) { // pre-load all images
+  //String imageName = "data/"+folderName+"/img_" + nf(i, 5) + ".png";
+  //images[i]  = loadImage(imageName);
+
+
+// end pre-load images
+
+output = createWriter("animation.ino"); 
+output.println ("// move this file to your Arduino sketch.");
+String createdTime = (day()+"/"+month()+"/"+year()+" - "+hour()+":"+minute()+":"+second());
+output.println ("// animation.ino: created on " + createdTime);
+output.println ( "const PROGMEM unsigned char B["+ numFrames + "]["+numleds*3+"]  = {");
 } 
 
 void draw() { 
