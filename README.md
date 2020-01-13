@@ -24,6 +24,23 @@ Here is a high-level description of the process:
 * A copy of Processing (free [download](https://processing.org/))
 * A copy of After Effects ([paid](https://en.wikipedia.org/wiki/Adobe_After_Effects) software)
 
+### Detailed instructions
+
+These steps assume that you have already exported your animation as a sequence of  PNG files to a folder. Let's call this folder `new_anim`.
+
+1. Copy `new_anim` to `src/02_Processing/png2ino/data`
+2. Navigate to `src/02_Processing/png2ino` and open `png2ino.pde` with Processing.
+3. Edit variables in the processing file to describe your animation:
+   * `folderName` to the name of your animation folder (e.g. `new_anim`)
+   * `numFrames` to the number of frames/images in your animation
+   * `numleds` to the number of LEDs in your LED strip  
+4. Run the sketch: A file named `animation.ino` will be created.
+5. Copy `animation.ino` to `src/03_Arduino/arduino_simple_playback`. Choose to overwrite if the file already exists.
+6. Navigate to `src/03_Arduino/arduino_simple_playback` and open `arduino_simple_playback.ino` in Arduino.
+7. Verify (compile) and upload to your Arduino board.
+8. Attach LED strip to correct Arduino pin (defined with `#define LED_PIN 4`)
+
+
 ### Authors
 
 Jan Hillmann-Regett and Jakob Lehr
