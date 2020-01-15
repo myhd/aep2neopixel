@@ -3,10 +3,10 @@
 
 void displayFrame (int theFrame) {
 
-  memcpy_P(buffer, B[theFrame], numleds*3);
+  memcpy_P(buffer, B[theFrame], numberOfLEDs*3);
 
   // update all 24 LEDs with the BUFFERed values
-  for (int j = 0; j < numleds; j = j + 1) {
+  for (int j = 0; j < numberOfLEDs; j = j + 1) {
     int offs = 3 * j; // offset
     strip.setPixelColor(j,  buffer[offs + 0], buffer[offs + 1], buffer[offs + 2]);
   } // end of update LEDs
