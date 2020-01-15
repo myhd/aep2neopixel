@@ -32,8 +32,8 @@ These steps assume that you have already exported your animation as a sequence o
 2. Navigate to `src/02_Processing/png2ino` and open `png2ino.pde` with Processing.
 3. Edit variables in the processing file to describe your animation:
    * `folderName` to the name of your animation folder (e.g. `new_anim`)
-   * `numFrames` to the number of frames/images in your animation
-   * `numleds` to the number of LEDs in your LED strip  
+   * `numberOfFrames` to the number of frames/images in your animation
+   * `numberOfLEDs` to the number of LEDs in your LED strip  
 4. Run the sketch: A file named `animation.ino` will be created.
 5. Copy `animation.ino` to `src/03_Arduino/arduino_simple_playback`. Choose to overwrite if the file already exists.
 6. Navigate to `src/03_Arduino/arduino_simple_playback` and open `arduino_simple_playback.ino` in Arduino.
